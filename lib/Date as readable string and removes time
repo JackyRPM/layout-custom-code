@@ -1,0 +1,24 @@
+	//Joaquin if I do wrong please let know
+  // Converts a Date/Date and Time Field into a nice readable format
+  
+  //HTML Span
+  <span class="only-date">[Information field:"Started"]</span>
+  
+  
+  //Function to scan the for above class. Turns it into a nice readable date
+  $$('body').addEvent('RpmLayoutRendered', function() {
+    	$$('.only-date').each(function(el) {
+    		var date = el.get('text').toDate();
+    		var options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    		if (date === null) {
+    			return;
+    		}
+    		el.set('text', date.toLocaleDateString("en-US", options));
+    	});
+	});
+  
+  //If you want it to read Friday Jan, 2019 
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
