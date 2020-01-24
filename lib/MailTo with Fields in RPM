@@ -1,0 +1,33 @@
+//Using Spans with IDs to surround the fields in the HTML to make up the subject header of the email.
+
+
+Quote <span id="a-get1">[Information field:"Title"]</span>
+
+<tr>
+    <td class="field-name">[New Lead Company Name]</td>
+    <td class="field-value"><span id="get2">[New Lead Company Name]</span></td>
+</tr>
+
+//Another Span to place the email somewhere in the layout
+
+<span id="a-email"></span>
+
+//The script below grabs the text content of the fields you can copy the Get1 to get as many fields as needed. Just make sure to mark
+// the spans with the right ID.
+<script>
+
+function banana(){
+		var get1 = document.getElementById('a-get1').textContent ;
+		var get2 = document.getElementById('a-get2').textContent ;
+	
+    //The format here is important. Schedule a Hosted part is what appears as a link in the layout. The mailTo: is the email that the email is 
+    // going to. 
+		var string = "<a href='mailto:sales@nxtsys.com?Subject= RPM Quote ID # " + get1 +" " + get2 +"'  target='_top'>Schedule a Hosted PBX/UCaaS Demo</a>";
+		document.getElementById('a-email').innerHTML = string;
+}
+
+$$('body').addEvent('RpmLayoutRendered', function() {
+	banana();
+});
+
+</script>
